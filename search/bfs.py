@@ -1,8 +1,9 @@
 from env.domain import GameState
 from collections import deque
+from typing import List
 
 
-def bfs(initial_state: "GameState"):
+def bfs(initial_state: "GameState") -> List[str]:
     frontier = deque([(initial_state, [])])
     visited = set()
     visited.add(initial_state)
