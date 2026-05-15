@@ -1,8 +1,9 @@
 from env.domain import GameState
 import heapq
+from typing import List
 
 
-def ucs(initial_state: "GameState"):
+def ucs(initial_state: "GameState") -> List[str]:
     counter = 0
     frontier = []
     heapq.heappush(frontier, (0, counter, initial_state, []))
