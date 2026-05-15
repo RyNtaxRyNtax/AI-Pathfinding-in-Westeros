@@ -1,9 +1,10 @@
 from env.domain import GameState
+from typing import List, Dict, Tuple
 
 
-def dls(initial_state: "GameState", limit=50):
-    frontier = [(initial_state, [], 0)]
-    visited = {initial_state: 0}
+def dls(initial_state: "GameState", limit: int = 50) -> List[str]:
+    frontier: List[Tuple["GameState", List[str], int]] = [(initial_state, [], 0)]
+    visited: Dict["GameState", int] = {initial_state: 0}
     while frontier:
         current_state, actions, depth = frontier.pop()
         if current_state.is_goal_state():
