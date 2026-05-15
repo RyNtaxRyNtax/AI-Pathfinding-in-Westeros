@@ -15,14 +15,15 @@ os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "1"
 warnings.filterwarnings("ignore")
 
 from env import play
-from search.bfs import bfs
 
-# from search.dls import dls
+# from search.bfs import bfs
+from search.dls import dls
+
 # from search.ucs import ucs
 # from search.a_star import a_star
 
 
 if __name__ == "__main__":
-    play("easy-no-weapon", bfs, delay=500)
-    play("medium-no-weapon", bfs, delay=500)
-    play("hard-no-weapon2", bfs, delay=500)
+    play("easy-no-weapon", dls, delay=500)
+    play("medium-no-weapon", dls, delay=500)
+    play("hard-no-weapon2", dls, delay=500)
