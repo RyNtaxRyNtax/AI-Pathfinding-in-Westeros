@@ -18,12 +18,10 @@ from env import play
 
 # from search.bfs import bfs
 # from search.dls import dls
-from search.ucs import ucs
-
-# from search.a_star import a_star
-
+# from search.ucs import ucs
+from search.a_star import a_star
 
 if __name__ == "__main__":
-    play("easy-no-weapon", ucs, delay=500)
-    play("medium-no-weapon", ucs, delay=500)
-    play("hard-no-weapon2", ucs, delay=500)
+    play("easy-no-weapon", a_star, delay=500)
+    play("medium-no-weapon", a_star, delay=500)
+    play("hard-no-weapon2", a_star, delay=500)
