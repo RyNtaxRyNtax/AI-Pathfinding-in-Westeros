@@ -1,20 +1,26 @@
 from env.domain import GameState
 import heapq
+from typing import List, Tuple, Dict
 
 
-def a_star(initial_state: "GameState"):
-
-    def heuristic(state):
-        # TODO: Implement Manhattan Distance here in the next step
-        # Returning 0 for now keeps the engine running as UCS (baseline)
-        return 0
+def a_star(initial_state: "GameState") -> List[str]:
+    def heuristic(state: "GameState") -> int:
+        player_pos = state.get_agent_position()
+        targets = state.get_targets_positions()
+        if not targets:
+            return 0
+        min_distance = float("inf")
+        for target in targets:
+            dist = abs(player_pos[0] - target[0]) + abs(player_pos[1] - target[1])
+            if dist < min_distance:
+                min_distance = dist
+        return min_distance
 
     counter = 0
-    frontier = []
-    # Priority Queue stores: (priority_score, counter, current_state, list_of_actions, cost_so_far)
+    frontier: List[Tuple[int, int, "GameState", List[str], int]] = []
     initial_priority = heuristic(initial_state)
     heapq.heappush(frontier, (initial_priority, counter, initial_state, [], 0))
-    visited = {initial_state: 0}
+    visited: Dict["GameState", int] = {initial_state: 0}
     while frontier:
         current_state: "GameState"
         _, _, current_state, actions, cost_so_far = heapq.heappop(frontier)
@@ -24,7 +30,6 @@ def a_star(initial_state: "GameState"):
             new_cost = cost_so_far + step_cost
             if next_state not in visited or new_cost < visited[next_state]:
                 visited[next_state] = new_cost
-                # The A* Priority Math: f(n) = g(n) + h(n)
                 priority = new_cost + heuristic(next_state)
                 counter += 1
                 heapq.heappush(
