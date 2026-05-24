@@ -35,7 +35,7 @@ class GameRunner:
 
         self.expanded_nodes = counted_state.get_expanded_nodes()
 
-        print(f"Map Name: {self.grid_world.map_data.map_name}")
+        # print(f"Map Name: {self.grid_world.map_data.map_name}")
         print(f"Search completed in {time.time() - start: .2f}s")
 
 
@@ -97,7 +97,7 @@ class GameRunner:
 
         pygame.quit()
 
-        return score
+        return score, self.expanded_nodes
 
 
 class ScoreCalculator:
